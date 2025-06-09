@@ -15,7 +15,26 @@
 - **Plug-and-Play**: нові вузли додаються без зміни хаба
 
 ## Структура репозиторію
--├── actuator_node/ # Код вузла-актуатора (ESP32-H2)
--├── hub_esp32s3/ # Код центрального хаба (ESP32-S3)
--├── sensor_node/ # Код сенсорного вузла (ESP32-H2)
--├── components/ # Спільні утиліти (thread_utils, mqtt_utils, actuator_utils, sensor_utils)
+├── actuator_node/ # Код вузла-актуатора (ESP32-H2)
+├── hub_esp32s3/ # Код центрального хаба (ESP32-S3)
+├── sensor_node/ # Код сенсорного вузла (ESP32-H2)
+├── components/ # Спільні утиліти (thread_utils, mqtt_utils, actuator_utils, sensor_utils)
+
+## ПЗ та середовище  
+- **Espressif ESP-IDF v4.x**  
+- **OpenThread SDK**  
+- **Mosquitto** (TLS)  
+- **Home Assistant** (MQTT Integration, Lovelace UI)
+
+**Налаштування ESP-IDF**
+cd hub_esp32s3
+idf.py set-target esp32s3
+idf.py menuconfig    # вказати Wi-Fi, Thread PSK, MQTT TLS налаштування
+idf.py build flash monitor
+
+**Збірка сенсорних/актуаторних вузлів**
+cd ../sensor_node
+idf.py build flash monitor
+
+cd ../actuator_node
+idf.py build flash monitor
